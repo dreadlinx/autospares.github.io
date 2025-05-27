@@ -1125,4 +1125,82 @@ fade-in {
   .contact-form-container {
     padding: 1.5rem;
   }
+}/* Testimonials styling */
+.testimonials {
+  background: #f9f9f9;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.testimonial-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.rating {
+  color: #f7c600;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.client {
+  margin-top: 1rem;
+  font-style: italic;
+}@media (max-width: 768px) {
+  .nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .nav.active {
+    display: flex;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+input, select, textarea {
+  font-size: 16px; /* prevents iOS zooming */
+  min-height: 44px; /* better touch targets */
+}/* Fix mobile menu */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  .nav {
+    display: none;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav.active {
+    display: flex;
+    flex-direction: column;
+  }
 }

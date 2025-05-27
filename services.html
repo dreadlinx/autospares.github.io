@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="description" content="24/7 Mobile Truck Repairs & Parts in Gauteng - Emergency roadside assistance, quality spare parts, and expert mechanics">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Services | MOBILE TRUCK CLINIC</title>
   <link rel="stylesheet" href="style.css" />
+  <button class="mobile-menu-toggle">☰</button>
 </head>
 <body>
 <!-- Header -->
@@ -58,36 +60,42 @@
         <img src="images/TR.jpg" alt="Truck Repair">
         <h3>Truck Repairs</h3>
         <p>We specialize in servicing and repairing all major truck brands including Volvo, MAN, and Scania.</p>
+        <a href="contact.html?service=repair" class="btn btn-small">Get Quote</a>
       </div>
 
       <div class="card fade-in">
         <img src="images/Road.jpg" alt="On-Site Breakdown">
         <h3>Breakdown Assistance</h3>
         <p>24/7 mobile team available to assist with breakdowns on the road or on-site.</p>
+        <a href="contact.html?service=repair" class="btn btn-small">Get Quote</a>
       </div>
 
       <div class="card fade-in">
         <img src="images/diag.jpg" alt="Diagnostics">
         <h3>Diagnostics & Electrical</h3>
         <p>Advanced diagnostics and electrical fault-finding to keep your truck running smoothly.</p>
+        <a href="contact.html?service=repair" class="btn btn-small">Get Quote</a>
       </div>
 
       <div class="card fade-in">
         <img src="images/about 6.jpg" alt="Trailer Service">
         <h3>Trailer Maintenance</h3>
         <p>Comprehensive trailer inspection, maintenance, and repair services to ensure roadworthiness.</p>
+        <a href="contact.html?service=repair" class="btn btn-small">Get Quote</a>
       </div>
 
     <div class="card fade-in">
       <img src="images/about 7.jpg" alt="rebuilds">
       <h3>Gearbox & Differential Rebuilds</h3>
       <p>Specialized repairs and rebuilds for gearboxes and differentials, including work on ZF systems and other major drivetrain brands.</p>
+      <a href="contact.html?service=repair" class="btn btn-small">Get Quote</a>
     </div>
 
     <div class="card fade-in">
-      <img src="images/Truck & Bus Spares.jpg" alt="rebuilds">
+      <img src="images/spares.jpg" alt="rebuilds">
       <h3>Truck & Bus Spares</h3>
       <p>We stock and supply high-quality spares for Volvo, Scania, Mercedes-Benz and other major truck brands. Parts for trucks, buses, and bakkies.</p>
+      <a href="contact.html?service=repair" class="btn btn-small">Get Quote</a>
     </div>
 
     </div>
@@ -98,7 +106,61 @@
     <p>Contact us now for professional, fast, and reliable truck repairs and parts!</p>
     <a href="contact.html" class="btn">Contact Us</a>
   </section>
+<script>
+  // Form submission handler
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      
+      // Show loading state
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+      submitBtn.disabled = true;
+      
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          // Show success message
+          const successMsg = form.querySelector('.success-message') || 
+            document.createElement('div');
+          successMsg.className = 'success-message';
+          successMsg.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            Thank you! We'll contact you shortly.
+          `;
+          form.appendChild(successMsg);
+          form.reset();
+          
+          // Scroll to success message
+          successMsg.scrollIntoView({ behavior: 'smooth' });
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+  });
 
+  // Mobile menu toggle
+  const mobileMenuToggle = document.createElement('button');
+  mobileMenuToggle.className = 'mobile-menu-toggle';
+  mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+  document.querySelector('.header-container').prepend(mobileMenuToggle);
+  
+  mobileMenuToggle.addEventListener('click', () => {
+    document.querySelector('.nav').classList.toggle('active');
+  });
+</script>
 </body>
 </html>
 <section class="quote-section fade-in">
